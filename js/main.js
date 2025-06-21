@@ -9,7 +9,7 @@ const game = {
 
     },
     missions: [],
-}
+};
 
 import { loadJSON } from './dataLoader.js';
 
