@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Premiers pas dans la forêt",
+    "description": "Élimine 3 gobelins dans la forêt.",
+    "requiredLevel": 1,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 1, "count": 3 }
+    ],
+    "rewards": {
+      "exp": 50,
+      "gold": 10,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  },
+  {
+    "id": 2,
+    "name": "Collecte de potions",
+    "description": "Trouve et rapporte 5 potions de soin.",
+    "requiredLevel": 2,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "collect", "target": 2, "count": 5 }
+    ],
+    "rewards": {
+      "exp": 40,
+      "gold": 5,
+      "items": []
+    },
+    "repeatable": true,
+    "conditions": []
+  },
+  {
+    "id": 3,
+    "name": "Chasser la meute",
+    "description": "Vaincs 5 loups sans mourir.",
+    "requiredLevel": 2,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 3, "count": 5 }
+    ],
+    "rewards": {
+      "exp": 100,
+      "gold": 20,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": [
+      { "type": "failOnDeath" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "L'épreuve du mage",
+    "description": "En tant que mage, élimine 2 orcs.",
+    "requiredLevel": 4,
+    "requiredClass": "mage",
+    "objectives": [
+      { "type": "kill", "target": 2, "count": 2 }
+    ],
+    "rewards": {
+      "exp": 120,
+      "gold": 25,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  }
+]

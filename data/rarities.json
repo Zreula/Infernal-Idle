@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Commun",
+    "color": "#cccccc",
+    "dropChance": 79,
+    "description": "Objets basiques et courants"
+  },
+  {
+    "id": 2,
+    "name": "Rare",
+    "color": "#4287f5",
+    "dropChance": 10,
+    "description": "Effets ou stats améliorés"
+  },
+  {
+    "id": 3,
+    "name": "Épique",
+    "color": "#a020f0",
+    "dropChance": 0.9,
+    "description": "Très puissants, peu courants"
+  },
+  {
+    "id": 4,
+    "name": "Légendaire",
+    "color": "#ffd700",
+    "dropChance": 0.1,
+    "description": "Uniquement pour les plus chanceux !"
+  }
+]

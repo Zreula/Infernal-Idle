@@ -1,0 +1,47 @@
+[
+{
+  "id": 1,
+  "name": "Rusty Sword",
+  "type": "weapon",
+  "rarity": 1,
+  "description": "A basic and worn-out sword. Not very effective, but better than nothing.",
+  "stats": { "attack": 2 },
+  "effects": [],
+  "effectDuration": 0,
+  "requiredLevel": 1,
+  "requiredClass": null,
+  "stackable": false,
+  "value": 1,
+  "image": "items/rusty_sword.png"
+},
+{
+  "id": 2,
+  "name": "Minor Healing Potion",
+  "type": "consumable",
+  "rarity": 1,
+  "description": "Restores 10 HP.",
+  "stats": {},
+  "effects": ["heal_10"],
+  "effectDuration": 0,
+  "requiredLevel": 1,
+  "requiredClass": null,
+  "stackable": true,
+  "value": 5,
+  "image": "items/minor_heal_potion.png"
+},
+{
+  "id": 3,
+  "name": "Scroll of Protection",
+  "type": "consumable",
+  "rarity": 2,
+  "description": "Increases defense by 5 for 3 turns. Usable only by Mages.",
+  "stats": {},
+  "effects": ["buff_defense_5"],
+  "effectDuration": 3,
+  "requiredLevel": 4,
+  "requiredClass": "mage",
+  "stackable": true,
+  "value": 20,
+  "image": "items/protection_scroll.png"
+}
+]
