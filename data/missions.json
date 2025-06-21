@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Premiers pas dans la forêt",
-    "description": "Élimine 3 gobelins dans la forêt.",
+    "name": "First Steps in the Forest",
+    "description": "Eliminate 3 goblins in the forest.",
     "requiredLevel": 1,
     "requiredClass": null,
     "objectives": [
@@ -18,8 +18,8 @@
   },
   {
     "id": 2,
-    "name": "Collecte de potions",
-    "description": "Trouve et rapporte 5 potions de soin.",
+    "name": "Potion Gathering",
+    "description": "Find and deliver 5 healing potions.",
     "requiredLevel": 2,
     "requiredClass": null,
     "objectives": [
@@ -35,8 +35,8 @@
   },
   {
     "id": 3,
-    "name": "Chasser la meute",
-    "description": "Vaincs 5 loups sans mourir.",
+    "name": "Hunt the Pack",
+    "description": "Defeat 5 wolves without dying.",
     "requiredLevel": 2,
     "requiredClass": null,
     "objectives": [
@@ -54,8 +54,8 @@
   },
   {
     "id": 4,
-    "name": "L'épreuve du mage",
-    "description": "En tant que mage, élimine 2 orcs.",
+    "name": "Mage's Trial",
+    "description": "As a mage, eliminate 2 orcs.",
     "requiredLevel": 4,
     "requiredClass": "mage",
     "objectives": [

@@ -58,17 +58,17 @@ function displayAvailableMissions() {
 
         if (mission.rewards?.exp) {
             const expItem = document.createElement('li');
-            expItem.innerHTML = `<strong>EXP :</strong> ${mission.rewards.exp}`;
+            expItem.innerHTML = `<strong>XP :</strong> ${mission.rewards.exp}`;
             rewardsList.appendChild(expItem);
         }
         if (mission.rewards?.gold) {
             const goldItem = document.createElement('li');
-            goldItem.innerHTML = `<strong>Or :</strong> ${mission.rewards.gold}`;
+            goldItem.innerHTML = `<strong>Golds :</strong> ${mission.rewards.gold}`;
             rewardsList.appendChild(goldItem);
         }
         if (mission.rewards?.items && mission.rewards.items.length > 0) {
             const itemsItem = document.createElement('li');
-            itemsItem.innerHTML = `<strong>Objets :</strong> ${mission.rewards.items.join(', ')}`;
+            itemsItem.innerHTML = `<strong>Items :</strong> ${mission.rewards.items.join(', ')}`;
             rewardsList.appendChild(itemsItem);
         }
         missionDiv.appendChild(rewardsList);
@@ -77,7 +77,7 @@ function displayAvailableMissions() {
         if (mission.conditions?.failOnDeath) {
             const condElem = document.createElement('div');
             condElem.classList.add('conditions');
-            condElem.innerHTML = `<em>Échec si mort</em>`;
+            condElem.innerHTML = `<em>Fail if you die.</em>`;
             missionDiv.appendChild(condElem);
         }
         // Vérifie si la mission est déjà acceptée
@@ -87,12 +87,12 @@ function displayAvailableMissions() {
             // Si oui, affiche l'indication "Mission en cours"
             const inProgressElem = document.createElement('div');
             inProgressElem.classList.add('mission-in-progress');
-            inProgressElem.textContent = "Mission en cours";
+            inProgressElem.textContent = "Mission in progress";
             missionDiv.appendChild(inProgressElem);
         } else {
             // Sinon, ajoute le bouton "Prendre la mission"
             const btn = document.createElement('button');
-            btn.textContent = "Prendre la mission";
+            btn.textContent = "Accept Mission";
             btn.classList.add('accept-mission-btn');
             btn.addEventListener('click', () => {
                 // Ajoute la mission aux actives
@@ -124,7 +124,7 @@ function updateActiveMissionsOverlay() {
   if (game.activeMissions.length > 0) {
     const title = document.createElement('div');
     title.className = 'overlay-title';
-    title.textContent = 'Missions en cours';
+    title.textContent = 'Missions in Progress';
     overlay.appendChild(title);
   }
 
