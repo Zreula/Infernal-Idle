@@ -9,6 +9,7 @@ const game = {
 
     },
     missions: [],
+    activeMissions: [],
 };
 
 import { loadJSON } from './dataLoader.js';
@@ -20,7 +21,7 @@ async function initializeGame() {
         console.log('Missions chargées :', game.missions);
 
         // Tu pourras ensuite appeler d'autres fonctions d'initialisation ici
-        // ex : displayAvailableMissions();
+        displayAvailableMissions();
 
     } catch (error) {
         console.error('Erreur lors du chargement des missions :', error);
@@ -79,7 +80,29 @@ function displayAvailableMissions() {
             condElem.innerHTML = `<em>Échec si mort</em>`;
             missionDiv.appendChild(condElem);
         }
+        // Vérifie si la mission est déjà acceptée
+        const isActive = game.activeMissions.some(activeMission => activeMission.name === mission.name);
 
+        if (isActive) {
+            // Si oui, affiche l'indication "Mission en cours"
+            const inProgressElem = document.createElement('div');
+            inProgressElem.classList.add('mission-in-progress');
+            inProgressElem.textContent = "Mission en cours";
+            missionDiv.appendChild(inProgressElem);
+        } else {
+            // Sinon, ajoute le bouton "Prendre la mission"
+            const btn = document.createElement('button');
+            btn.textContent = "Prendre la mission";
+            btn.classList.add('accept-mission-btn');
+            btn.addEventListener('click', () => {
+                // Ajoute la mission aux actives
+                game.activeMissions.push(mission);
+                // Réaffiche la liste pour mettre l'interface à jour
+                displayAvailableMissions();
+            });
+            missionDiv.appendChild(btn);
+        }
+        
         // Ajout du bloc mission au conteneur principal
         container.appendChild(missionDiv);
     });
