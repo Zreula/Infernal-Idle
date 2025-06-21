@@ -96,14 +96,64 @@ function displayAvailableMissions() {
             btn.classList.add('accept-mission-btn');
             btn.addEventListener('click', () => {
                 // Ajoute la mission aux actives
-                game.activeMissions.push(mission);
+                game.activeMissions.push({
+                    name: mission.name,
+                    progress: 0,
+                    goal: mission.objectives[0].count
+                });
                 // Réaffiche la liste pour mettre l'interface à jour
                 displayAvailableMissions();
             });
             missionDiv.appendChild(btn);
         }
-        
+
         // Ajout du bloc mission au conteneur principal
         container.appendChild(missionDiv);
+        updateActiveMissionsOverlay()
     });
+}
+// À placer avec tes fonctions d'affichage ou missions
+
+function updateActiveMissionsOverlay() {
+  // Sélectionne le conteneur de la fenêtre flottante
+  const overlay = document.getElementById('active-missions-overlay');
+  // On vide le contenu actuel pour repartir de zéro
+  overlay.innerHTML = '';
+
+  // Titre de la fenêtre (peut être masqué si tu préfères une version ultra sobre)
+  if (game.activeMissions.length > 0) {
+    const title = document.createElement('div');
+    title.className = 'overlay-title';
+    title.textContent = 'Missions en cours';
+    overlay.appendChild(title);
+  }
+
+  // Parcours des missions actives
+  game.activeMissions.forEach(mission => {
+    // Création d'un bloc pour chaque mission
+    const missionDiv = document.createElement('div');
+    missionDiv.className = 'mission-brief';
+
+    // Nom de la mission
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'mission-title';
+    nameDiv.textContent = mission.name;
+
+    // Progression de la mission (ex : "Tuer les loups 2/5")
+    const progressDiv = document.createElement('div');
+    progressDiv.className = 'mission-progress';
+    progressDiv.textContent = `${mission.progress} / ${mission.goal}`;
+
+    // Ajoute nom + objectif au bloc mission
+    missionDiv.appendChild(nameDiv);
+    missionDiv.appendChild(progressDiv);
+
+    // Ajoute le bloc mission à la fenêtre flottante
+    overlay.appendChild(missionDiv);
+  });
+
+  // Si aucune mission active, tu peux (optionnel) afficher un message :
+  // else {
+  //   overlay.textContent = "Aucune mission en cours";
+  // }
 }
