@@ -428,3 +428,29 @@ button:hover, button:focus,
     font-size: 0.97rem;
   }
 }
+.combat-area {
+    border: 1px solid #333;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 6px;
+    background: #1d29415d;
+}
+/* Combat timer progress bar */
+.combat-timer-bar-bg {
+    width: 100%;
+    height: 18px;
+    background: #232638;
+    border-radius: 8px;
+    margin: 0.5em 0 1em 0;
+    border: 1px solid #353765;
+    overflow: hidden;
+    position: relative;
+}
+.combat-timer-bar-fg {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd447 60%, #6ad1e3 100%);
+    transition: width 0.1s linear;
+}
+.area-result {
+    margin-top: 0.5em;
+}

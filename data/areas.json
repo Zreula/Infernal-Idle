@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Forest",
+    "description": "A dense forest full of goblins and wolves.",
+    "enemies": [1, 2]
+  },
+  {
+    "id": 2,
+    "name": "Cave",
+    "description": "A dark cave inhabited by bats and trolls.",
+    "enemies": [3, 4]
+  }
+]

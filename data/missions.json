@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "First Steps in the Forest",
+    "name": "First Steps in the Forest.",
     "description": "Eliminate 3 goblins in the forest.",
     "requiredLevel": 1,
     "requiredClass": null,
@@ -11,59 +11,6 @@
     "rewards": {
       "exp": 50,
       "gold": 10,
-      "items": []
-    },
-    "repeatable": false,
-    "conditions": []
-  },
-  {
-    "id": 2,
-    "name": "Potion Gathering",
-    "description": "Find and deliver 5 healing potions.",
-    "requiredLevel": 2,
-    "requiredClass": null,
-    "objectives": [
-      { "type": "collect", "target": 2, "count": 5 }
-    ],
-    "rewards": {
-      "exp": 40,
-      "gold": 5,
-      "items": []
-    },
-    "repeatable": true,
-    "conditions": []
-  },
-  {
-    "id": 3,
-    "name": "Hunt the Pack",
-    "description": "Defeat 5 wolves without dying.",
-    "requiredLevel": 2,
-    "requiredClass": null,
-    "objectives": [
-      { "type": "kill", "target": 3, "count": 5 }
-    ],
-    "rewards": {
-      "exp": 100,
-      "gold": 20,
-      "items": []
-    },
-    "repeatable": false,
-    "conditions": [
-      { "type": "failOnDeath" }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Mage's Trial",
-    "description": "As a mage, eliminate 2 orcs.",
-    "requiredLevel": 4,
-    "requiredClass": "mage",
-    "objectives": [
-      { "type": "kill", "target": 2, "count": 2 }
-    ],
-    "rewards": {
-      "exp": 120,
-      "gold": 25,
       "items": []
     },
     "repeatable": false,

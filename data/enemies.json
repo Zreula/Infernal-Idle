@@ -1,16 +1,16 @@
 [
   {
-    "id": 1, // Unique identifier for the enemy
-    "name": "Goblin", // Name of the enemy
-    "level": 1, // Level of the enemy, affects difficulty
-    "maxHp": 20, // Maximum health points of the enemy
-    "attack": 4, // Attack power of the enemy
-    "defense": 1, // Defense power of the enemy
-    "speed": 3, // Speed of the enemy, affects turn order in combat
-    "critChance": 0.1, // Critical hit chance
-    "critDamage": 1.5, // Multiplier for critical hit damage
-    "exp": 5, // Experience points awarded for defeating the enemy
-    "lootTable": [ // Loot table with item IDs and drop chances
+    "id": 1, 
+    "name": "Goblin", 
+    "level": 1, 
+    "maxHp": 20, 
+    "attack": 4, 
+    "defense": 1, 
+    "speed": 3, 
+    "critChance": 0.1, 
+    "critDamage": 1.5, 
+    "exp": 5, 
+    "lootTable": [ 
         { "itemId": 1, "chance": 0.5 }, 
         { "itemId": 2, "chance": 0.1 } ] 
   }

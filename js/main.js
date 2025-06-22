@@ -1,4 +1,4 @@
-const game = {
+export const game = {
     player: {
         name: '',
         level: 1,
@@ -10,6 +10,8 @@ const game = {
     },
     missions: [],
     activeMissions: [],
+    enemies: [],
+    areas: [],
 };
 
 import { loadJSON } from './dataLoader.js';
@@ -18,10 +20,15 @@ async function initializeGame() {
     try {
         // Charge le fichier JSON contenant les missions
         game.missions = await loadJSON('data/missions.json');
+        game.enemies = await loadJSON('data/enemies.json');
+        game.areas = await loadJSON('data/areas.json');
         console.log('Missions chargées :', game.missions);
+        console.log('Ennemis chargés :', game.enemies);
+        console.log('Zones chargées :', game.areas);
 
         // Tu pourras ensuite appeler d'autres fonctions d'initialisation ici
         displayAvailableMissions();
+        displayAreas();
 
     } catch (error) {
         console.error('Erreur lors du chargement des missions :', error);
@@ -99,7 +106,8 @@ function displayAvailableMissions() {
                 game.activeMissions.push({
                     name: mission.name,
                     progress: 0,
-                    goal: mission.objectives[0].count
+                    goal: mission.objectives[0].count,
+                    objectives: mission.objectives[0]
                 });
                 // Réaffiche la liste pour mettre l'interface à jour
                 displayAvailableMissions();
@@ -129,7 +137,7 @@ function updateActiveMissionsOverlay() {
   }
 
   // Parcours des missions actives
-  game.activeMissions.forEach(mission => {
+game.activeMissions.forEach(mission => {
     // Création d'un bloc pour chaque mission
     const missionDiv = document.createElement('div');
     missionDiv.className = 'mission-brief';
@@ -139,21 +147,106 @@ function updateActiveMissionsOverlay() {
     nameDiv.className = 'mission-title';
     nameDiv.textContent = mission.name;
 
-    // Progression de la mission (ex : "Tuer les loups 2/5")
+    // Objectif de la mission (ex : "Tuer 5 loups")
+    const objectiveDiv = document.createElement('div');
+    objectiveDiv.className = 'mission-objective';
+    // On adapte le texte selon le type d'objectif
+    let objText = '';
+    if (mission.objectives) {
+        if (mission.objectives.type === 'kill') {
+            // Cherche le nom de l'ennemi à partir de l'ID
+            const enemy = game.enemies.find(e => e.id === mission.objectives.target);
+            const enemyName = enemy ? enemy.name : `ID: ${mission.objectives.target}`;
+            objText = `Eliminate ${mission.objectives.count} ${enemyName}${mission.objectives.count > 1 ? 's' : ''}.`;
+        } else if (mission.objectives.type === 'collect') {
+            objText = `Collect ${mission.objectives.count} items (ID: ${mission.objectives.target})`;
+        } else {
+            objText = `Objective: ${mission.objectives.type}`;
+        }
+    }
+    objectiveDiv.textContent = objText;
+
+    // Progression de la mission (ex : "2 / 5")
     const progressDiv = document.createElement('div');
     progressDiv.className = 'mission-progress';
-    progressDiv.textContent = `${mission.progress} / ${mission.goal}`;
+    progressDiv.textContent = `${mission.progress} / ${mission.goal}.`;
 
-    // Ajoute nom + objectif au bloc mission
+    // Ajoute nom + objectif + progression au bloc mission
     missionDiv.appendChild(nameDiv);
+    missionDiv.appendChild(objectiveDiv); // <-- Ajoute l'objectif ici
     missionDiv.appendChild(progressDiv);
 
     // Ajoute le bloc mission à la fenêtre flottante
     overlay.appendChild(missionDiv);
-  });
+});
 
   // Si aucune mission active, tu peux (optionnel) afficher un message :
   // else {
   //   overlay.textContent = "Aucune mission en cours";
   // }
 }
+
+// Éventuellement, tu peux aussi ajouter des écouteurs d'événements pour mettre à jour la progression des missions
+// par exemple lorsqu'un joueur accomplit un objectif ou interagit avec le monde.
+document.addEventListener('missionProgress', (event) => {
+    const { missionName, progress } = event.detail;
+    const mission = game.activeMissions.find(m => m.name === missionName);
+    if (mission) {
+        mission.progress += progress;
+        if (mission.progress >= mission.goal) {
+            // Logique pour terminer la mission, donner les récompenses, etc.
+            console.log(`Mission ${missionName} completed!`);
+        }
+        updateActiveMissionsOverlay();
+    }
+});
+
+// Affiche les zones de combat disponibles dans le conteneur HTML prévu
+import { startCombat } from './combat.js';
+
+function enterArea(areaId) {
+    const area = game.areas.find(a => a.id === areaId);
+    if (!area) return;
+    // Choisit un ennemi aléatoire dans la zone
+    const enemyId = area.enemies[Math.floor(Math.random() * area.enemies.length)];
+    startCombat(enemyId);
+}
+
+export function displayAreas() {
+    const container = document.getElementById('combat-section');
+    container.innerHTML = `
+        <h2>Combat</h2>
+        <div id="combat-areas"></div>
+    `;
+    const areasDiv = document.getElementById('combat-areas');
+
+    game.areas.forEach(area => {
+        const areaDiv = document.createElement('div');
+        areaDiv.className = 'combat-area';
+
+        const title = document.createElement('h3');
+        title.textContent = area.name;
+        areaDiv.appendChild(title);
+
+        const desc = document.createElement('p');
+        desc.textContent = area.description;
+        areaDiv.appendChild(desc);
+
+        // Conteneur pour la barre de progression et le résultat
+        const areaResultDiv = document.createElement('div');
+        areaResultDiv.className = 'area-result';
+        areaDiv.appendChild(areaResultDiv);
+
+        const btn = document.createElement('button');
+        btn.textContent = 'Enter Area';
+        btn.onclick = () => {
+            startCombat(area.enemies[Math.floor(Math.random() * area.enemies.length)], areaResultDiv);
+        };
+        areaDiv.appendChild(btn);
+
+        areasDiv.appendChild(areaDiv);
+    });
+}
+
+
+window.enterArea = enterArea; // Pour debug si besoin
