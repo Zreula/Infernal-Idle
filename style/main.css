@@ -355,12 +355,13 @@ button:hover, button:focus,
 }
 #active-missions-overlay {
   position: fixed;
-  top: 1.3rem;
-  right: 1.5rem;
+  top: 1.5rem;
+  right: 0.5rem;
   z-index: 1000;
-  min-width: 260px;
-  max-width: 310px;
-  max-height: 55vh;
+  min-width: 300px;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
   background: #22253a;
   border-radius: 14px;
   box-shadow: 0 4px 18px rgba(20,20,40,0.18);
