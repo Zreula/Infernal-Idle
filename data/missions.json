@@ -15,5 +15,107 @@
     },
     "repeatable": false,
     "conditions": []
+  },
+  {
+    "id": 2,
+    "name": "Cave Exploration",
+    "description": "Defeat the troll in the cave.",
+    "requiredLevel": 2,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 4, "count": 1 }
+    ],
+    "rewards": {
+      "exp": 100,
+      "gold": 20,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  },
+  {
+    "id": 3,
+    "name": "Desert Challenge",
+    "description": "Survive against a sandworm in the desert.",
+    "requiredLevel": 3,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 5, "count": 1 }
+    ],
+    "rewards": {
+      "exp": 150,
+      "gold": 30,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  },
+  {
+    "id": 4,
+    "name": "Mountain Expedition",
+    "description": "Climb the mountain and defeat a yeti.",
+    "requiredLevel": 4,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 7, "count": 1 }
+    ],
+    "rewards": {
+      "exp": 200,
+      "gold": 40,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  },
+  {
+    "id": 5,
+    "name": "Swamp Survival",
+    "description": "Defeat a lizardman in the swamp.",
+    "requiredLevel": 5,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 9, "count": 1 }
+    ],
+    "rewards": {
+      "exp": 250,
+      "gold": 50,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  },
+  {
+    "id": 6,
+    "name": "Advanced Combat Training",
+    "description": "Defeat a scorpion in the desert.",
+    "requiredLevel": 3,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 6, "count": 1 }
+    ],
+    "rewards": {
+      "exp": 180,
+      "gold": 35,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
+  },
+  {
+    "id": 7,
+    "name": "Frog Hunt",
+    "description": "Eliminate giant frogs in the swamp.",
+    "requiredLevel": 5,
+    "requiredClass": null,
+    "objectives": [
+      { "type": "kill", "target": 10, "count": 3 }
+    ],
+    "rewards": {
+      "exp": 220,
+      "gold": 45,
+      "items": []
+    },
+    "repeatable": false,
+    "conditions": []
   }
 ]

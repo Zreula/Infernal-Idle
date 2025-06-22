@@ -1,13 +1,13 @@
 import { game } from './main.js';
 
-export function startCombat(enemyId, container) {
+export function startCombat(enemyId, container, btn) {
     const enemy = game.enemies.find(e => e.id === enemyId);
     if (!enemy) {
-        displayCombatResult("Enemy not found!", container);
+        displayCombatResult("Enemy not found!", container, {});
+        if (btn) btn.disabled = false;
         return;
     }
 
-    // Affiche la progress bar de temps dans le conteneur de l'area
     displayCombatResult(`
         <div id="combat-log">Preparing to fight ${enemy.name}...</div>
         <div class="combat-timer-bar">
@@ -15,9 +15,9 @@ export function startCombat(enemyId, container) {
                 <div class="combat-timer-bar-fg" style="width:100%"></div>
             </div>
         </div>
-    `, container);
+    `, container, { enemy });
 
-    const combatDuration = 5000; // 5 secondes
+    const combatDuration = 5000;
     let timerElapsed = 0;
     const timerInterval = setInterval(() => {
         timerElapsed += 50;
@@ -28,22 +28,18 @@ export function startCombat(enemyId, container) {
         }
         if (timerElapsed >= combatDuration) {
             clearInterval(timerInterval);
-            resolveCombat(enemy, container);
+            resolveCombat(enemy, container, btn);
         }
     }, 50);
 }
 
-function resolveCombat(enemy, container) {
+function resolveCombat(enemy, container, btn) {
     let playerHp = game.player.health;
     let enemyHp = enemy.maxHp;
 
-    // Combat simulé en un seul "round"
     while (playerHp > 0 && enemyHp > 0) {
-        // Joueur attaque
         let playerDmg = Math.max(1, 5 + (game.player.level - enemy.defense));
         enemyHp -= playerDmg;
-
-        // Ennemi attaque si vivant
         if (enemyHp > 0) {
             let enemyDmg = Math.max(1, enemy.attack - 1);
             playerHp -= enemyDmg;
@@ -64,11 +60,35 @@ function resolveCombat(enemy, container) {
     }
     game.player.health = Math.max(0, playerHp);
 
-    displayCombatResult(`
-        <div id="combat-log">${result}</div>
-    `, container);
+    const resultCell = container.querySelector('.combat-result');
+    if (resultCell) {
+        resultCell.innerHTML = `<div id="combat-log">${result}</div>`;
+    }
+    if (btn) {
+        btn.disabled = false;
+        btn.classList.remove('area-disabled-btn');
+    } // Réactive le bouton
 }
 
-function displayCombatResult(html, container) {
-    container.innerHTML = html;
+function displayCombatResult(resultHtml, container, options = {}) {
+    // options peut contenir : enemy, player, etc.
+    let grid = `
+        <div class="combat-grid">
+            <div class="combat-cell combat-enemy">
+                <div class="combat-label">Enemy</div>
+                <div class="combat-value">${options.enemy ? options.enemy.name : ''}</div>
+            </div>
+            <div class="combat-cell combat-vs">
+                <span>VS</span>
+            </div>
+            <div class="combat-cell combat-player">
+                <div class="combat-label">Player</div>
+                <div class="combat-value">You</div>
+            </div>
+            <div class="combat-cell combat-result" colspan="3">
+                ${resultHtml || ""}
+            </div>
+        </div>
+    `;
+    container.innerHTML = grid;
 }

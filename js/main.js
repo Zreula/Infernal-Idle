@@ -236,11 +236,14 @@ export function displayAreas() {
         const areaResultDiv = document.createElement('div');
         areaResultDiv.className = 'area-result';
         areaDiv.appendChild(areaResultDiv);
+        
 
         const btn = document.createElement('button');
         btn.textContent = 'Enter Area';
         btn.onclick = () => {
-            startCombat(area.enemies[Math.floor(Math.random() * area.enemies.length)], areaResultDiv);
+            btn.disabled = true; // Désactive le bouton
+            btn.classList.add('area-disabled-btn');
+            startCombat(area.enemies[Math.floor(Math.random() * area.enemies.length)], areaResultDiv, btn);
         };
         areaDiv.appendChild(btn);
 
